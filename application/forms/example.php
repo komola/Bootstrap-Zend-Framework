@@ -35,6 +35,31 @@ class Form_Example extends Twitter_Form
 			"label" => "Remember me for two weeks",
 		));
 
-		$this->addElement("submit", "Register");
+		$this->addElement("radio", "terms", array(
+			"label" => "I agree to the terms",
+		));
+
+		$this->addElement("radio", "terms", array(
+			"multiOptions" => array(
+				"1" => "I agree to the terms",
+				"0" => "I don't agree to the terms"
+			)
+		));
+
+		$this->addElement("multicheckbox", "multichecks", array(
+			"description" => "This is a nice thing.",
+			"legend" => "Foobar",
+			"multiOptions" => array(
+				"1" => "I agree to the terms",
+				"0" => "I don't agree to the terms"
+			)
+		));
+
+		$this->addElement("submit", "register", array("label" => "Register"));
+		$this->addElement("reset", "reset", array("label" => "Reset"));
+		$this->addElement("button", "custom", array(
+			"class" => "success",
+			"label" => "Custom classes, too!"
+		));
 	}
 }

@@ -16,12 +16,12 @@ class Twitter_Form_Decorator_Errors extends Zend_Form_Decorator_Errors
 				return $content;
 		}
 
-		$element->setAttrib("class", trim($element->getAttrib("class") . " error"));
+		$element->setAttrib("class", trim("error " . $element->getAttrib("class")));
 
 		$wrapper = $element->getDecorator("outerwrapper");
 		if($wrapper)
 		{
-			$wrapper->setOption("class", trim($wrapper->getOption("class") . " error"));
+			$wrapper->setOption("class", trim("error " . $wrapper->getOption("class")));
 		}
 
 		$separator = $this->getSeparator();
