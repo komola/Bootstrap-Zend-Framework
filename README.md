@@ -6,6 +6,15 @@ work together with Twitter Bootstrap (http://twitter.github.com/bootstrap).
 
 All you have to do is, instead of extending Zend\_Form, extend Twitter\_Form.
 
+Getting started
+---------------
+* Add this to your application.ini config:
+
+    autoloaderNamespaces.Twitter = "Twitter_"
+
+* Add the library/Twitter folder to your library
+* Instead of extending from Zend\_Form extend from Twitter\_Form
+
 We included a small example application that shows you what you can do with
 this.
 
