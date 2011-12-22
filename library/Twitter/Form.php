@@ -62,6 +62,12 @@ class Twitter_Form extends Zend_Form
 			$element->removeDecorator("Label");
 			$element->removeDecorator("outerwrapper");
 			$element->removeDecorator("innerwrapper");
+
+			$this->_addActionsDisplayGroupElement($element);
+
+			//$element->addDecorator(array(
+				//"outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "actions")
+			//);
 		}
 
 		if($element instanceof Zend_Form_Element_Checkbox)
@@ -108,5 +114,29 @@ class Twitter_Form extends Zend_Form
 		{
 			$element->setDecorators(array("ViewHelper"));
 		}
+	}
+
+	private function _addActionsDisplayGroupElement($element)
+	{
+		$displayGroup = $this->getDisplayGroup("zfBootstrapFormActions");
+
+		if($displayGroup === null)
+		{
+			$displayGroup = $this->addDisplayGroup(
+				array($element), 
+				"zfBootstrapFormActions",
+				array(
+					"decorators" => array(
+						"FormElements",
+						array("HtmlTag", array("tag" => "div", "class" => "actions"))
+					)
+				));
+		}
+		else
+		{
+			$displayGroup->addElement($element);
+		}
+
+		return $displayGroup;
 	}
 }
