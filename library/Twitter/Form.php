@@ -103,5 +103,10 @@ class Twitter_Form extends Zend_Form
 				array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
 			));
 		}
+
+		if($element instanceof Zend_Form_Element_Hidden)
+		{
+			$element->setDecorators(array("ViewHelper"));
+		}
 	}
 }

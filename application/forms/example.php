@@ -55,6 +55,11 @@ class Form_Example extends Twitter_Form
 			)
 		));
 
+		$this->addElement("hidden", "id", array(
+			"value" => "Test",
+			"label" => "Test"
+		));
+
 		$this->addElement("submit", "register", array("label" => "Register"));
 		$this->addElement("reset", "reset", array("label" => "Reset"));
 		$this->addElement("button", "custom", array(
