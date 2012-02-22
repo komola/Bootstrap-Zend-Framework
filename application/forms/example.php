@@ -55,6 +55,11 @@ class Form_Example extends Twitter_Form
 			)
 		));
 
+		$this->addElement("file", "file", array(
+			"label" => "Please upload a file",
+			"required" => true
+			));
+
 		$this->addElement("hidden", "id", array(
 			"value" => "Test",
 			"label" => "Test"

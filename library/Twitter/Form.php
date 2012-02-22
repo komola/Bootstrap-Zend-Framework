@@ -11,14 +11,7 @@ class Twitter_Form extends Zend_Form
 		$this->clearDecorators();
 
 		// Decorators for all the form elements
-		$this->setElementDecorators(array(
-			"ViewHelper",
-			array("Errors", array("placement" => "prepend")),
-			array("Description", array("tag" => "span", "class" => "help-block")),
-			array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
-			"Label",
-			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
-		));
+		$this->setElementDecorators($this->_getElementDecorators());
 
 		// Decorators for the form itself
 		$this->addDecorator("FormElements")
@@ -28,11 +21,23 @@ class Twitter_Form extends Zend_Form
 		parent::__construct();
 	}
 
+	protected function _getElementDecorators()
+	{
+		return array(
+			"ViewHelper",
+			array("Errors", array("placement" => "prepend")),
+			array("Description", array("tag" => "span", "class" => "help-block")),
+			array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
+			"Label",
+			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
+		);
+	}
+
 	/**
 	 * @see Zend_Form::addElement
 	 *
-	 * We have to override this, because we have to set some special decorators 
-	 * on a per-element basis (checkboxes and submit buttons have different 
+	 * We have to override this, because we have to set some special decorators
+	 * on a per-element basis (checkboxes and submit buttons have different
 	 * decorators than other elements)
 	 */
 	public function addElement($element, $name = null, $options = null)
@@ -44,7 +49,16 @@ class Twitter_Form extends Zend_Form
 			$element = $this->getElement($name);
 		}
 
-		// Special style for Zend 
+		if($element instanceof Zend_Form_Element_File)
+		{
+			$decorators = $this->_getElementDecorators();
+
+			$decorators[0] = "File";
+
+			$element->setDecorators($decorators);
+		}
+
+		// Special style for Zend
 		if($element instanceof Zend_Form_Element_Submit
 			|| $element instanceof Zend_Form_Element_Reset
 			|| $element instanceof Zend_Form_Element_Button)
@@ -123,7 +137,7 @@ class Twitter_Form extends Zend_Form
 		if($displayGroup === null)
 		{
 			$displayGroup = $this->addDisplayGroup(
-				array($element), 
+				array($element),
 				"zfBootstrapFormActions",
 				array(
 					"decorators" => array(
