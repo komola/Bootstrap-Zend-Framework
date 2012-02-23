@@ -4,6 +4,9 @@ class Form_Example extends Twitter_Form
 {
 	public function init()
 	{
+		// Make this form horizontal
+		$this->setAttrib("horizontal", true);
+
 		$this->addElement("text", "username", array(
 			"label" => "Username",
 			"description" => "Foobar"
@@ -40,6 +43,7 @@ class Form_Example extends Twitter_Form
 		));
 
 		$this->addElement("radio", "terms", array(
+			"label" => "Terms",
 			"multiOptions" => array(
 				"1" => "I agree to the terms",
 				"0" => "I don't agree to the terms"
@@ -48,10 +52,19 @@ class Form_Example extends Twitter_Form
 
 		$this->addElement("multicheckbox", "multichecks", array(
 			"description" => "This is a nice thing.",
-			"legend" => "Foobar",
+			"label" => "Foobar",
 			"multiOptions" => array(
 				"1" => "I agree to the terms",
 				"0" => "I don't agree to the terms"
+			)
+		));
+
+		$this->addElement("multicheckbox", "multichecks2", array(
+			"label" => "Inline checkboxes",
+			"inline" => true,
+			"multiOptions" => array(
+				"1" => "One",
+				"0" => "Two"
 			)
 		));
 
