@@ -2,7 +2,7 @@
 
 class Twitter_Form extends Zend_Form
 {
-	public function __construct()
+	public function __construct($options = null)
 	{
 		// Let's load our own decorators
 		$this->addPrefixPath("Twitter_Form_Decorator", "Twitter/Form/Decorator/", "decorator");
@@ -15,21 +15,20 @@ class Twitter_Form extends Zend_Form
 
 		// Decorators for the form itself
 		$this->addDecorator("FormElements")
-			->addDecorator("HtmlTag", array("tag" => "fieldset"))
-			->addDecorator("Form", array("class" => "form-stacked"));
+			->addDecorator("HtmlTag", array("tag" => "fieldset"));
 
-		parent::__construct();
+		parent::__construct($options);
 	}
 
 	protected function _getElementDecorators()
 	{
 		return array(
 			"ViewHelper",
-			array("Errors", array("placement" => "prepend")),
+			array("Errors", array("placement" => "append")),
 			array("Description", array("tag" => "span", "class" => "help-block")),
-			array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
-			"Label",
-			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
+			array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "controls")),
+			array("Label", array("class" => "control-label")),
+			array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "control-group"))
 		);
 	}
 
@@ -69,7 +68,7 @@ class Twitter_Form extends Zend_Form
 				&& !($element instanceof Zend_Form_Element_Reset)
 			 	&& !($element instanceof Zend_Form_Element_Button))
 			{
-				$class = "primary";
+				$class = "btn-primary";
 			}
 
 			$element->setAttrib("class", trim("btn $class " . $element->getAttrib("class")));
@@ -87,16 +86,14 @@ class Twitter_Form extends Zend_Form
 		if($element instanceof Zend_Form_Element_Checkbox)
 		{
 			$element->setDecorators(array(
-				array(array("labelopening" => "HtmlTag"), array("tag" => "label", "id" => $element->getId()."-label", "for" => $element->getName(), "openOnly" => true)),
+				array(array("labelopening" => "HtmlTag"), array("tag" => "label", "class" => "checkbox", "id" => $element->getId()."-label", "for" => $element->getName(), "openOnly" => true)),
 				"ViewHelper",
 				array("Checkboxlabel"),
 				array(array("labelclosing" => "HtmlTag"), array("tag" => "label", "closeOnly" => true)),
-				array(array("liwrapper" => "HtmlTag"), array("tag" => "li")),
-				array(array("ulwrapper" => "HtmlTag"), array("tag" => "ul", "class" => "inputs-list")),
-				array("Errors", array("placement" => "prepend")),
+				array("Errors", array("placement" => "append")),
 				array("Description", array("tag" => "span", "class" => "help-block")),
-				array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
-				array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
+				array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "controls")),
+				array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "control-group"))
 			));
 		}
 
@@ -111,16 +108,26 @@ class Twitter_Form extends Zend_Form
 
 			$element->setMultiOptions($multiOptions);
 
+			$element->setAttrib("labelclass", "checkbox");
+
+			if($element->getAttrib("inline"))
+			{
+				$element->setAttrib("labelclass", "checkbox inline");
+			}
+
+			if ($element instanceof Zend_Form_Element_Radio)
+			{
+				$element->setAttrib("labelclass", "radio");
+			}
 
 			$element->setOptions(array("separator" => ""));
 			$element->setDecorators(array(
 				"ViewHelper",
-				array(array("liwrapper" => "HtmlTag"), array("tag" => "li")),
-				array(array("ulwrapper" => "HtmlTag"), array("tag" => "ul", "class" => "inputs-list")),
-				array("Errors", array("placement" => "prepend")),
+				array("Errors", array("placement" => "append")),
 				array("Description", array("tag" => "span", "class" => "help-block")),
-				array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "input")),
-				array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "clearfix"))
+				array(array("innerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "controls")),
+				array("Label", array("class" => "control-label")),
+				array(array("outerwrapper" => "HtmlTag"), array("tag" => "div", "class" => "control-group"))
 			));
 		}
 
@@ -142,7 +149,7 @@ class Twitter_Form extends Zend_Form
 				array(
 					"decorators" => array(
 						"FormElements",
-						array("HtmlTag", array("tag" => "div", "class" => "actions"))
+						array("HtmlTag", array("tag" => "div", "class" => "form-actions"))
 					)
 				));
 		}
@@ -152,5 +159,15 @@ class Twitter_Form extends Zend_Form
 		}
 
 		return $displayGroup;
+	}
+
+	public function render()
+	{
+		if($this->getAttrib("horizontal"))
+		{
+			$this->addDecorator("Form", array("class" => "form-horizontal"));
+		}
+
+		return parent::render();
 	}
 }
