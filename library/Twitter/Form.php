@@ -47,13 +47,18 @@ class Twitter_Form extends Zend_Form
 		{
 			$element = $this->getElement($name);
 		}
+		// An existing instance of a form element was added to the form
+		// We need to reset its decorators
+		else
+		{
+			$element->clearDecorators();
+			$element->setDecorators($this->_getElementDecorators());
+		}
 
 		if($element instanceof Zend_Form_Element_File)
 		{
 			$decorators = $this->_getElementDecorators();
-
 			$decorators[0] = "File";
-
 			$element->setDecorators($decorators);
 		}
 

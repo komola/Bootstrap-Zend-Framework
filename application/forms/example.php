@@ -78,6 +78,16 @@ class Form_Example extends Twitter_Form
 			"label" => "Test"
 		));
 
+		$elm = $this->createElement("text", "foo", array(
+			"label" => "Element created via createElement"));
+
+		$this->addElement($elm);
+
+		$elm2 = new Zend_Form_Element_Text("foo2", array(
+			"label" => "Via new instance"));
+
+		$this->addElement($elm2);
+
 		$this->addElement("submit", "register", array("label" => "Register"));
 		$this->addElement("reset", "reset", array("label" => "Reset"));
 		$this->addElement("button", "custom", array(
