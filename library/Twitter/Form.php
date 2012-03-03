@@ -140,6 +140,11 @@ class Twitter_Form extends Zend_Form
 		{
 			$element->setDecorators(array("ViewHelper"));
 		}
+		
+		if($element instanceof Zend_Form_Element_Textarea)
+		{
+			$element->setAttrib('rows', '3');
+		}
 	}
 
 	private function _addActionsDisplayGroupElement($element)
@@ -171,6 +176,8 @@ class Twitter_Form extends Zend_Form
 		if($this->getAttrib("horizontal"))
 		{
 			$this->addDecorator("Form", array("class" => "form-horizontal"));
+		} else {
+			$this->addDecorator("Form", array("class" => "form-vertical"));
 		}
 
 		return parent::render();
