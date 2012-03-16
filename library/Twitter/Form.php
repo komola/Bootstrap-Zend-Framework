@@ -171,7 +171,7 @@ class Twitter_Form extends Zend_Form
 		return $displayGroup;
 	}
 
-	public function render()
+	public function render(Zend_View_Interface $view = null)
 	{
 		if($this->getAttrib("horizontal"))
 		{
