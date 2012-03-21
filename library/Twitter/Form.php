@@ -170,8 +170,12 @@ class Twitter_Form extends Zend_Form
 
 		return $displayGroup;
 	}
-
-	public function render()
+	/**
+	 * Render
+	 * @param  Zend_View_Interface $view
+	 * @return void
+	 */
+	public function render(Zend_View_Interface $view = null)
 	{
 		if($this->getAttrib("horizontal"))
 		{
@@ -180,6 +184,6 @@ class Twitter_Form extends Zend_Form
 			$this->addDecorator("Form", array("class" => "form-vertical"));
 		}
 
-		return parent::render();
+		return parent::render($view);
 	}
 }
