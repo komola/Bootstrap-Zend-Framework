@@ -15,7 +15,7 @@ class Twitter_Form extends Zend_Form
 
 		// Decorators for the form itself
 		$this->addDecorator("FormElements")
-			->addDecorator("HtmlTag", array("tag" => "fieldset"));
+			->addDecorator("Fieldset");
 
 		parent::__construct($options);
 	}
