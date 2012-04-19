@@ -141,7 +141,7 @@ class Twitter_Form extends Zend_Form
 			$element->setDecorators(array("ViewHelper"));
 		}
 		
-		if($element instanceof Zend_Form_Element_Textarea)
+		if($element instanceof Zend_Form_Element_Textarea && !$element->getAttrib('rows'))
 		{
 			$element->setAttrib('rows', '3');
 		}
