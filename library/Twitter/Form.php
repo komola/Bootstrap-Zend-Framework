@@ -43,7 +43,7 @@ class Twitter_Form extends Zend_Form
 	{
 		parent::addElement($element, $name, $options);
 
-		if(!$element instanceof Zend_Form_Element_Abstract && $name != null)
+		if(!$element instanceof Zend_Form_Element && $name != null)
 		{
 			$element = $this->getElement($name);
 		}
@@ -145,6 +145,8 @@ class Twitter_Form extends Zend_Form
 		{
 			$element->setAttrib('rows', '3');
 		}
+
+        return $this;
 	}
 
 	private function _addActionsDisplayGroupElement($element)
@@ -173,7 +175,7 @@ class Twitter_Form extends Zend_Form
 	/**
 	 * Render
 	 * @param  Zend_View_Interface $view
-	 * @return void
+	 * @return Zend_View
 	 */
 	public function render(Zend_View_Interface $view = null)
 	{
