@@ -125,6 +125,11 @@ class Twitter_Form extends Zend_Form
 				$element->setAttrib("labelclass", "radio");
 			}
 
+			if($element->getAttrib("inline"))
+			{
+				$element->setAttrib("labelclass", "radio inline");
+			}
+
 			$element->setOptions(array("separator" => ""));
 			$element->setDecorators(array(
 				"ViewHelper",
