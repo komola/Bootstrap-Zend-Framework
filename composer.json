@@ -1,0 +1,14 @@
+{
+    "name": "komola/bootstrap-zend-framework",
+    "type": "library",
+    "description": "Twitter bootstrap for ZF1",
+    "require": {
+        "zendframework/zendframework1": "1.*"
+    },
+    "autoload": {
+        "psr-0": { "Twitter_": "library"}
+    },
+    "include-path": [
+        "library/"
+    ]
+}
