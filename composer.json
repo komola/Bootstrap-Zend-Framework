@@ -1,6 +1,14 @@
 {
     "name": "komola/bootstrap-zend-framework",
     "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian Hoitz",
+            "email": "hoitz@komola.de",
+            "homepage": "http://komola.de"
+        }
+    ],
     "description": "Twitter bootstrap for ZF1",
     "require": {
         "zendframework/zendframework1": "1.*"
