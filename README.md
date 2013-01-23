@@ -6,11 +6,29 @@ work together with Twitter Bootstrap (http://twitter.github.com/bootstrap).
 
 Getting started
 ---------------
+
+Instaliation
+------------
+
+Composer way
+------------
+
+* Add this to your composer.json:
+
+        komola/bootstrap-zend-framework
+
+Old way
+-------
+
 * Add this to your application.ini config:
 
         autoloaderNamespaces.Twitter = "Twitter_"
 
 * Add the library/Twitter folder to your library
+
+Usage
+-----
+
 * Instead of extending from Zend\_Form extend from Twitter\_Form
 
 We included a small example application that shows you what you can do with
@@ -18,12 +36,13 @@ this.
 The interesting parts for our "library" are in /library/Twitter.
 
 Have fun!
+
 If you encounter any errors, please report them here on Github. Thanks!
 
 License
 -------
 
-Copyright (c) 2012 Sebastian Hoitz, komola UG <hoitz@komola.de>
+Copyright (c) 2012-2013 Sebastian Hoitz, komola GmbH <hoitz@komola.de>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
