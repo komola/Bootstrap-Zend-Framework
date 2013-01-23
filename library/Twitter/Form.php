@@ -150,6 +150,11 @@ class Twitter_Form extends Zend_Form
 		{
 			$element->setAttrib('rows', '3');
 		}
+		
+		if($element instanceof Zend_Form_Element_Captcha)
+		{
+			$element->removeDecorator("viewhelper");
+		}
 
         return $this;
 	}
