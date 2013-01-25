@@ -202,7 +202,14 @@ class Twitter_Form extends Zend_Form
             if($this->getAttrib($type)) {
                 $this->addDecorator("Form", array("class" => "form-$type"));
                 $set = true;
-            } 
+                
+                if($type == "inline"){
+	             foreach ($this->_elements as $element) {
+	                    $element->removeDecorator("outerwrapper")
+	                            ->removeDecorator("innerwrapper");
+	             }
+	        }
+            }
         }
         if(true !== $set) { // if neither type was set, we set the default vertical class
             $this->addDecorator("Form", array("class" => "form-vertical"));
