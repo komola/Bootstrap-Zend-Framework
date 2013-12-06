@@ -1,5 +1,5 @@
 <?php
-class RF_Form_Decorator_Errors extends Zend_Form_Decorator_Errors
+class Twitter_Form_Decorator_Errors extends Zend_Form_Decorator_Errors
 {
     public function render($content)
     {
