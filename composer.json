@@ -15,8 +15,5 @@
     },
     "autoload": {
         "psr-0": { "Twitter_": "library"}
-    },
-    "include-path": [
-        "library/"
-    ]
+    }
 }
